@@ -1,0 +1,262 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+
+  body {
+    background-color: rgb(132, 132, 132);
+    
+    header {
+      background-color: #619b8a;
+      display: flex;
+      justify-content: space-between;
+      
+  
+     h1 {
+      margin: 5px 20px;
+     }
+  
+     #mainBtns {
+      display: none;
+      
+      #logout, #showAddBtn {
+        padding: 5px 10px;
+        margin: 10px;
+        background-color: #fe7f2d;
+        color: whitesmoke;
+        border-radius: 5px;
+  
+        &:hover{
+          cursor: pointer;
+          color: rgb(53, 51, 51);
+          border: 1px solid whitesmoke;
+        }
+      }
+      #logout {
+        color: red;
+      }
+     }
+    }
+  
+    #loginDiv {
+      background-color: #A1C181;
+      padding: 20px;
+      width: 400px;
+      margin: 50px auto;
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        
+        label {
+          text-align: center;
+        }
+  
+        input {
+          margin: 10px 20px;
+        }
+    
+        button {
+          padding: 5px 10px;
+          margin: 10px;
+          background-color: #fe7f2d;
+          color: whitesmoke;
+          border-radius: 5px;
+  
+          &:hover{
+            cursor: pointer;
+            color: rgb(53, 51, 51);
+            border: 1px solid whitesmoke;
+          }
+        }
+  
+        #error {
+          display: none;
+          color: #915e3d;
+          text-align: center;
+        }
+      }
+    }
+  
+    #forAdmin {
+      display: none;
+      
+      #addProducts {
+        display: none;
+        width: 500px;
+        background-color: #ffce78;
+        margin: 50px auto;
+        border-radius: 5px;
+  
+        .topAdd {
+          position: relative;
+          h3 {
+            padding: 10px;
+            text-align: center;
+          }
+          .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #fe7f2d;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 2px 5px;
+  
+            &:hover{
+              cursor: pointer;
+              color: rgb(53, 51, 51);
+              border: 1px solid whitesmoke;
+            }
+          }
+        }
+        
+        .bottomAdd {
+          form {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            padding-top: 10px;
+  
+            .item {
+              display: flex;
+              justify-content: space-between;
+              width: 400px;
+  
+              input{
+                margin: 10px 0;
+                width: 200px;
+              }
+  
+              label {
+                margin: 10px 0;
+              }
+
+              #addPic {
+                background-color: #fe7f2d;
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+              }
+            }
+            
+            .prw {
+              object-fit: cover;
+              width: 100px;
+              height: 100px;
+              margin: 10px auto;
+            }
+
+            #addProductBtn {
+              background-color: #fe7f2d;
+              padding: 10px;
+              font-size: 1.2rem;
+  
+              &:hover{
+                cursor: pointer;
+                color: rgb(53, 51, 51);
+                border: 1px solid whitesmoke;
+              }
+            }
+  
+            .sizes {
+              margin: 10px auto;
+              input {
+                width: 50px;
+                
+              }
+            }
+          }
+        }
+      }
+
+      #products {
+        margin: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+
+        .drawnProduct {
+          background-color: #DAC75D;
+          padding: 10px;
+          padding-top: 30px;
+          position: relative;
+
+          input {
+            display: block;
+            margin: 10px;
+          }
+
+          img {
+            width: 200px;
+            margin: 10px;
+          }
+
+          .drawnSize {
+            display: inline-block;
+            width: 30px;
+          }
+
+          .deleteBtn {
+            background-color: #fe7f2d;
+            color: red;
+            padding: 2px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+            &:hover{
+              cursor: pointer;
+              color: rgb(53, 51, 51);
+              border: 1px solid whitesmoke;
+            }
+          }
+
+          .editBtn {
+            background-color: #A1C181;
+            padding: 2px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+
+            &:hover{
+              cursor: pointer;
+              color: rgb(53, 51, 51);
+              border: 1px solid whitesmoke;
+            }
+          }
+        }
+      }
+    }
+    footer{
+      position: fixed;
+      bottom: 0;
+      background-color: #619b8a;  
+      padding: 5px;
+      width: 100%;
+
+      p {
+        font-size: 0.7rem;
+        text-align: center;
+
+        a {
+          text-decoration: none;
+          color: rgb(29, 29, 29);
+
+          &:hover {
+            color: rgb(166, 166, 166);
+          }
+
+          i {
+            font-size: 1.5rem;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}

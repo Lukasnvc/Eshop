@@ -1,0 +1,92 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 0;
+}
+body nav {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: #324376;
+}
+body nav a {
+  text-decoration: none;
+  color: black;
+}
+body nav .logo {
+  padding: 20px;
+  font-size: 1.6rem;
+}
+body nav .logo span {
+  font-size: 0.7rem;
+}
+body nav .navbar {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+body nav .navbar .place {
+  margin-right: 10px;
+  padding: 35px 20px;
+}
+body nav .navbar .place:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F5DD90;
+}
+body nav .cart {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+body nav .cart .forCart {
+  padding: 30px 20px;
+  font-size: 1.7rem;
+}
+body nav .cart .forCart:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F76C5E;
+}
+body main form {
+  display: flex;
+}
+body main form .filterItem {
+  margin: 10px 30px;
+}
+body main form .filterItem input {
+  border: none;
+  border-bottom: 2px solid #F68E5F;
+}
+body main form .filterItem input:focus {
+  outline: none;
+}
+body main form .filterItem select {
+  color: #F68E5F;
+  border: none;
+  border-bottom: 2px solid #F68E5F;
+}
+body main form .filterItem select:focus {
+  outline: none;
+}
+body main #products {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+body main #products .product {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 300px;
+}
+body main #products .product .productImg {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main #products .product .productPrice {
+  margin: 0;
+}/*# sourceMappingURL=stylesIndex.css.map */

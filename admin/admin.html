@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin panel</title>
+  <link rel="stylesheet" href="adminStyle.css">
+  <script defer src="scriptForAdmin.js"></script>
+  <script src="https://kit.fontawesome.com/b423b1131d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-pen-clip"></i></i>Admin panel</h1>
+    <div id="mainBtns">
+      <button id="showAddBtn">Add product</button>
+      <button id="logout">Logout</button>
+    </div>
+  </header>
+
+  <div id="loginDiv">
+    <form id="Login">
+      <label for="name">User name :</label>
+        <input type="text" name="name" id="adminName">
+      <label for="password">Password :</label>
+        <input type="password" name="password" id="password">
+      <button id="submit">Login</button>
+      <h2 id="error">Wrong password or username</h2>
+    </form>
+  </div>
+
+  <div id="forAdmin"> 
+    <div id="addProducts">
+      <div class="topAdd">
+        <h3>Add new product to shop</h3>
+        <button class="close" id="closeAdd">x</button>
+      </div>
+      <div class="bottomAdd">
+        <form id="createProduct">
+          <div class="item">
+            <label for="type">Type :</label>
+            <input type="text" name="type" id="type" required>
+          </div>
+          <div class="item">
+            <label for="color">Color :</label>
+            <input type="text" name="color" id="color" required>
+          </div>
+          <div class="item">
+            <label for="productName">Product name :</label>
+            <input type="text" name="productName" id="productName" required>
+          </div>
+          <div class="sizes">
+            <label for="sizeS">size S :</label>
+            <input type="number" name="sizeS" id="sizeS" required>
+            <label for="sizeM">size M :</label>
+            <input type="number" name="sizeM" id="sizeM" required>
+            <label for="sizeL">size L :</label>
+            <input type="number" name="sizeL" id="sizeL" required>
+            <label for="sizeXL">size XL :</label>
+            <input type="number" name="sizeXL" id="sizeXL" required>
+          </div>
+          <div class="item">
+            <label for="description">Description :</label>
+            <input type="text" name="description" id="description" required> 
+          </div>
+          <div class="item">
+            <label for="price">Price :</label>
+            <input type="number" name="price" id="price" required>
+          </div>
+          <div class="item">
+            <label for="picUrl">Picture Url :</label>
+            <input type="text" name="picUrl" id="picUrl" required>
+            <button id="addPic">add to item</button>
+          </div>
+          <div id="pics"></div>
+          <button id="addProductBtn">Add product</button>
+        </form>
+      </div>
+    </div>
+    <div id="products"></div>
+  </div>
+  
+  <footer>
+    <p>by Lukas 2022 <a href="https://github.com/Lukasnvc"><i class="fa-brands fa-github"></i></a></p>
+  </footer>
+</body>
+</html>
