@@ -6,9 +6,7 @@ const tshirts = document.querySelector('#tshirts');
 const hoodies = document.querySelector('#hoodies');
 const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
-const admin = document.querySelector('#admin');
-
-
+const title = document.querySelector('title');
 
 
 const getData = () => {
@@ -29,29 +27,36 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
-  products.innerHTML='';
-	draw(data)
-  search(data)
-  colorSearch(data)
+	filteredCategorie(data);
 	console.log('GOT this data to draw :', data)
 })
 }
 
 getData()
 
-let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+const filteredCategorie = (data) => {
+  let value=localStorage.getItem('categorie');
+  title.textContent = `Eshop ${value}s`;
+  const fCategorie = data.filter((element) => {
+    return (
+      element.type ===value
+    );
+  })
+  if (value) {
+    console.log(fCategorie);
+    draw(fCategorie);
+    search(fCategorie);
+    colorSearch(fCategorie);
+  }
+}
+
+
+
 
 const draw = (data) => {
   data.forEach(element => {
     const div = document.createElement('div');
     div.setAttribute('class', 'product');
-
-    const likedBtn = document.createElement('i');
-    likedBtn.setAttribute('class', 'fa-regular fa-heart');
-    if (likedArr.includes(element.id)) {
-      console.log('liked', element)
-      likedBtn.setAttribute('class', 'liked fa-solid fa-heart')
-    }
 
     const pic = JSON.parse(element.picUrl);
     const img = document.createElement('img');
@@ -66,33 +71,16 @@ const draw = (data) => {
     price.setAttribute('class', 'productPrice');
     price.textContent= `${element.price}$`
 
-    div.appendChild(likedBtn);
     div.appendChild(img);
     div.appendChild(name);
     div.appendChild(price);
    
     products.appendChild(div);
 
-    img.addEventListener('click', (e) => {
+    div.addEventListener('click', (e) => {
       e.preventDefault();
       pushUser(element);
       window.location.href = '/item/item.html';
-    })
-
-    likedBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      
-      if (likedArr.includes(element.id)) {
-        let i = likedArr.indexOf(element.id);
-        likedArr.splice(i,1);
-        let jsonLiked = JSON.stringify(likedArr);
-        localStorage.setItem('liked', jsonLiked);
-      } else {
-        likedArr.push(element.id);
-        let jsonLiked = JSON.stringify(likedArr);
-        localStorage.setItem('liked', jsonLiked);
-      }
-      getData()
     })
   });
 }
@@ -140,10 +128,11 @@ const pushUser = (item) => {
   localStorage.setItem('item_id', id);
 }
 
+
 mainIndex.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'all');
-  window.location.href = '/index.html';
+  window.location.href = '../index.html';
 })
 
 tshirts.addEventListener('click', (e) => {
@@ -169,9 +158,3 @@ hats.addEventListener('click', (e) => {
   localStorage.setItem('categorie', 'hat');
   window.location.href = '/categories/categories.html';
 })
-
-admin.addEventListener('click', () => {
-  localStorage.clear();
-  window.location.href = '/admin/admin.html';
-})
-

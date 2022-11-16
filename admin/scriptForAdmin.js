@@ -23,7 +23,11 @@ const closeAdd = document.querySelector('#closeAdd')
 const showAddBtn = document.querySelector('#showAddBtn');
 const mainBtns = document.querySelector('#mainBtns');
 const pics = document.querySelector('#pics');
-const addPic = document.querySelector('#addPic')
+const addPic = document.querySelector('#addPic');
+const filterColor = document.querySelector('#filterColor');
+const filterSearch = document.querySelector('#filterSearch');
+const searchesFields = document.querySelector('#searchesFields');
+const filterCategorie = document.querySelector('#filterCategorie');
 
 
 
@@ -35,6 +39,7 @@ login.addEventListener('click', (e) => {
 		loginDiv.style.display= 'none';
 		mainBtns.style.display= 'block';
 		forAdmin.style.display= "block";
+		searchesFields.style.display= 'flex';
 	} else {
 		console.log('not found')
 		error.style.display= 'block';
@@ -46,6 +51,7 @@ logout.addEventListener('click', () => {
 	loginDiv.style.display= 'block';
 	mainBtns.style.display= 'none';
 	forAdmin.style.display= "none";
+	searchesFields.style.display= 'none';
 	adminName.value= '';
 	password.value= '';
 })
@@ -177,8 +183,11 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
-	draw(data)
-	console.log('GOT this data to draw :', data)
+	draw(data);
+	console.log('GOT this data to draw :', data);
+	categorieSearch(data);
+	colorSearch(data);
+	search(data);
 })
 }
 
@@ -274,7 +283,6 @@ const draw = (data) => {
 		})
 
 		products.appendChild(div)
-		
 	});
 }
 
@@ -291,3 +299,59 @@ const editItem = (id, pics, color, name, description, price, type) => {
 	console.log(newSizes)
 	editProduct(id, color, name, jsonNewSizes, description, price, jsonNewPics, type);
 } 
+
+const search = (data) => {
+	filterSearch.addEventListener('keyup', (e) => {
+	const b = e.target.value.toLowerCase();
+	const filteredProducts = data.filter((products) => {
+		return (
+			products.name.toLowerCase().includes(b)
+		);
+	})
+	if (b){
+		products.innerHTML=null;
+		draw(filteredProducts);
+		} else {
+		products.innerHTML=null;
+		getData()
+		}
+	})
+	}
+	
+	const colorSearch = (data) => {
+		filterColor.addEventListener('change', (e) => {
+			e.preventDefault();
+			const value = filterColor.value;
+			const filteredColor = data.filter((products) => {
+				return (
+					products.color.includes(value)
+				);
+			})
+			if (value) {
+				products.innerHTML=null;
+				draw(filteredColor);
+			} else {
+				products.innerHTML=null;
+				getData()
+			}
+		})
+	}
+
+	const categorieSearch = (data) => {
+		filterCategorie.addEventListener('change', (e) => {
+			e.preventDefault();
+			const value = filterCategorie.value;
+			const filteredCategories = data.filter((product) => {
+				return (
+					product.type === value
+				);
+			})
+			if (value) {
+				products.innerHTML=null;
+				draw(filteredCategories);
+			} else {
+				products.innerHTML=null;
+				getData();
+			}
+		})
+	}

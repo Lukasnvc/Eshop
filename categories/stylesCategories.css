@@ -9,7 +9,6 @@ body nav {
   display: flex;
   justify-content: space-between;
   background-color: #324376;
-  z-index: 99;
 }
 body nav a {
   text-decoration: none;
@@ -54,7 +53,6 @@ body nav .cart .forCart:hover {
 body main form {
   display: flex;
   position: fixed;
-  z-index: 99;
   top: 100px;
 }
 body main form .filterItem {
@@ -79,15 +77,13 @@ body main form .filterItem select:focus {
   outline: none;
 }
 body main #products {
-  margin: 100px 100px;
+  margin: 100px;
   display: grid;
   width: 100%;
   grid-template-columns: 20% 20% 20% 20%;
   gap: 20px;
 }
 body main #products .product {
-  z-index: 0;
-  position: relative;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -99,15 +95,6 @@ body main #products .product:hover {
   border-bottom: 2px solid #F68E5F;
   color: #F68E5F;
   border-radius: 100px;
-}
-body main #products .product .fa-heart {
-  position: absolute;
-  top: 50px;
-  right: 50px;
-  font-size: 2rem;
-}
-body main #products .product .liked {
-  color: red;
 }
 body main #products .product .productImg {
   width: 300px;
@@ -138,24 +125,4 @@ body footer p a:hover {
 body footer p a i {
   font-size: 1.5rem;
   margin-left: 5px;
-}
-body footer #admin {
-  position: absolute;
-  bottom: 5px;
-  right: 30px;
-  color: rgb(29, 29, 29);
-  padding: 5px;
-  border: 2px solid rgb(29, 29, 29);
-  border-radius: 5px;
-}
-body footer #admin i {
-  color: black;
-}
-body footer #admin:hover {
-  border: 2px solid whitesmoke;
-  color: white;
-  cursor: pointer;
-}
-body footer #admin:hover i {
-  color: #F68E5F;
-}/*# sourceMappingURL=stylesIndex.css.map */
+}/*# sourceMappingURL=stylesCategories.css.map */

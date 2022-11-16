@@ -178,6 +178,7 @@
 
         .drawnProduct {
           background-color: #DAC75D;
+          width: 300px;
           padding: 10px;
           padding-top: 30px;
           position: relative;
@@ -235,13 +236,49 @@
     footer{
       position: fixed;
       bottom: 0;
+      display: flex;
+      justify-content: space-between;
       background-color: #619b8a;  
       padding: 5px;
       width: 100%;
 
+      form {
+        display: none;
+       
+        .filterItem {
+          margin: 10px 30px;
+  
+          input {
+            border: none;
+            opacity: 60%;
+            border-bottom: 2px solid black;
+  
+            &:focus{
+              outline: none;
+            }
+          }
+  
+          select {
+            opacity: 60%;
+            border: none;
+            border-bottom: 2px solid black;
+            &:focus{
+              outline: none;
+
+              &:hover {
+                cursor: pointer;
+                color: rgb(166, 166, 166);
+              }
+            }
+          }
+        }
+      }
+
       p {
         font-size: 0.7rem;
         text-align: center;
+        margin: 0 50px;
+        margin-top: 5px;
 
         a {
           text-decoration: none;

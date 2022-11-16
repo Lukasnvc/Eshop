@@ -1,0 +1,153 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 0;
+}
+body nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: #324376;
+}
+body nav a {
+  text-decoration: none;
+  color: black;
+}
+body nav .logo {
+  padding: 20px;
+  font-size: 1.6rem;
+}
+body nav .logo span {
+  font-size: 0.7rem;
+}
+body nav .navbar {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+body nav .navbar .place {
+  margin-right: 10px;
+  padding: 35px 20px;
+}
+body nav .navbar .place:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F5DD90;
+}
+body nav .cart {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+body nav .cart .forCart {
+  padding: 30px 20px;
+  font-size: 1.7rem;
+}
+body nav .cart .forCart:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F76C5E;
+}
+body #item {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 100px auto;
+}
+body #item #itemImg {
+  width: 40%;
+}
+body #item .itemInfo {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin-top: 100px;
+  margin: 70px;
+  text-align: center;
+}
+body #item .itemInfo #itemName {
+  font-size: 2rem;
+}
+body #item .itemInfo #itemCategorie {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: #F68E5F;
+}
+body #item .itemInfo #itemColor {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  color: #F68E5F;
+}
+body #item .itemInfo #itemPrice {
+  font-size: 1.8rem;
+  color: #F68E5F;
+}
+body #item .itemInfo .sizes {
+  margin: 20px;
+}
+body #item .itemInfo .sizes .empty {
+  background-color: red;
+}
+body #item .itemInfo .sizes span {
+  border: 1px solid #324376;
+  padding: 8px 10px;
+  margin-left: 10px;
+}
+body #item .itemInfo #OutOfStock {
+  color: red;
+  font-size: 1.3rem;
+}
+body #item .itemInfo #itemDescription {
+  word-spacing: 0.4rem;
+  line-height: 1.5rem;
+  text-align: left;
+}
+body #item .itemInfo .buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+body #item .itemInfo .buttons #like {
+  font-size: 3.3rem;
+  margin: 50px 0;
+  margin-right: 20px;
+}
+body #item .itemInfo .buttons .liked {
+  color: red;
+}
+body #item .itemInfo .buttons button {
+  padding: 10px 0;
+  margin: 40px 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1.8rem;
+  border: none;
+  background-color: white;
+  border-bottom: 3px solid white;
+}
+body #item .itemInfo .buttons button:hover {
+  border-bottom: 3px solid #F68E5F;
+  cursor: pointer;
+}
+body footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #324376;
+  width: 100%;
+}
+body footer p {
+  font-size: 0.7rem;
+  text-align: center;
+}
+body footer p a {
+  text-decoration: none;
+  color: rgb(29, 29, 29);
+}
+body footer p a:hover {
+  color: rgb(166, 166, 166);
+}
+body footer p a i {
+  font-size: 1.5rem;
+  margin-left: 5px;
+}/*# sourceMappingURL=stylesItem.css.map */

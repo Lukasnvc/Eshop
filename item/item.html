@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="scriptItem.js"></script>
+  <link rel="stylesheet" href="stylesItem.css">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b423b1131d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Eshop<span> by Lukas</span></div>
+      <ul class="navbar">
+        <a href="#" id="mainIndex"><li class="place">Main</li></a>
+        <a href="#" id="tshirts"><li class="place">T-shirts</li></a>
+        <a href="#" id="hoodies"><li class="place">Hoodies</li></a>
+        <a href="#" id="sweatshirts"><li class="place">Sweatshirts</li></a>
+        <a href="#" id="hats"><li class="place">Hats</li></a>
+      </ul>
+      <div class="cart">
+        <a href="#"><i class="fa-solid fa-heart forCart"></i></a>
+        <a href="#"><i class="fa-solid fa-cart-shopping forCart"></i></a>
+      </div>
+    </nav>
+  </header>
+  
+  <div id="item">
+    <div id="itemImg"></div>
+    <div class="itemInfo">
+      <h3 id="itemName"></h3>
+      <p class="itemSpecs">Categorie : <span id="itemCategorie"></span></p>
+      <p class="itemSpecs">Color : <span id="itemColor"></span></p>
+      <div class="sizes">
+        <span id="s">S</span>
+        <span id="m">M</span>
+        <span id="l">L</span>
+        <span id="xl">XL</span>
+      </div>
+      <p id="OutOfStock"></p>
+      <p id="itemDescription"></p>
+      <p class="itemSpecs">Price : <span id="itemPrice"></span></p>
+      <div class="buttons">
+       <i id="like" class="fa-regular fa-heart"></i>
+       <button id="toCart"><i class="fa-solid fa-cart-plus"></i> <br> Add to cart</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>by Lukas 2022 <a href="https://github.com/Lukasnvc"><i class="fa-brands fa-github"></i></a></p>
+  </footer>
+</body>
+</html>

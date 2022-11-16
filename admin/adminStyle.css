@@ -151,6 +151,7 @@
 }
 * body #forAdmin #products .drawnProduct {
   background-color: #DAC75D;
+  width: 300px;
   padding: 10px;
   padding-top: 30px;
   position: relative;
@@ -199,13 +200,43 @@
 * body footer {
   position: fixed;
   bottom: 0;
+  display: flex;
+  justify-content: space-between;
   background-color: #619b8a;
   padding: 5px;
   width: 100%;
 }
+* body footer form {
+  display: none;
+}
+* body footer form .filterItem {
+  margin: 10px 30px;
+}
+* body footer form .filterItem input {
+  border: none;
+  opacity: 60%;
+  border-bottom: 2px solid black;
+}
+* body footer form .filterItem input:focus {
+  outline: none;
+}
+* body footer form .filterItem select {
+  opacity: 60%;
+  border: none;
+  border-bottom: 2px solid black;
+}
+* body footer form .filterItem select:focus {
+  outline: none;
+}
+* body footer form .filterItem select:focus:hover {
+  cursor: pointer;
+  color: rgb(166, 166, 166);
+}
 * body footer p {
   font-size: 0.7rem;
   text-align: center;
+  margin: 0 50px;
+  margin-top: 5px;
 }
 * body footer p a {
   text-decoration: none;
