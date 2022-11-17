@@ -71,7 +71,7 @@ cart.addEventListener('click', (e) => {
 })
 
 const getData = () => {
-  fetch('https://testapi.io/api/lukasnvc/resource/Eshop',
+  fetch('https://testapi.io/api/lukasnvc/resource/NewEshop',
 {
   method: 'GET',
   headers: {
@@ -104,8 +104,8 @@ const itemPicker = (data) => {
       if (itemSizeArr.length>0){
         cart.style.color= '#F68E5F';
       } 
-      draw(element, likedArr)
-      sizeSelect(element)
+      draw(element, likedArr);
+      toReserve(element);
     }
   });
 }
@@ -182,41 +182,65 @@ likeBtn.addEventListener('click', (e) =>{
 
 let pickedSize
 
-const sizeSelect = (data) => {
-  sizeDropDown.addEventListener('change', (e) => {
-    e.preventDefault();
-    sizeDropDown.style.backgroundColor= 'white';
-    sizeForm.style.color= 'black';
-   pickedSize = +sizeDropDown.value;
-    })
+sizeDropDown.addEventListener('change', (e) => {
+  e.preventDefault();
+  sizeDropDown.style.backgroundColor= 'white';
+  sizeForm.style.color= 'black';
+  pickedSize = +sizeDropDown.value;
+  })
    
-  
-}
-
+const toReserve = (data) => {
 toCart.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(pickedSize)
+  
+  console.log(data.size, data.reserve);
 
   if (pickedSize === 0 || pickedSize > 0) {
     sizeDropDown.value= "undefined";
-    const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
-    let item = [];
-    item.push(id);
-    item.push(pickedSize);
-    itemSizeArr.push(item);
-    localStorage.setItem('itemId&size', JSON.stringify(itemSizeArr));
 
-    getData()
+    let parsedReserve = JSON.parse(data.reserve);
+    let parsedSize = JSON.parse(data.size);
+    parsedSize[pickedSize]-=1;
+    parsedReserve[pickedSize]+=1;
+    console.log(parsedReserve, parsedSize)
+
+    editProduct(data.id, data.color, data.name, parsedSize, parsedReserve, data.description, data.price, data.picUrl, data.type);
     
   } else {
     sizeDropDown.style.backgroundColor= 'red';
     sizeForm.style.color= 'red';
   }
 })
+}
 
-// const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
 
-// if (itemSizeArr.length>0){
-//   cart.style.color= '#F68E5F';
-// } 
-
+const editProduct = (id, color, name, sizes, reserve, description, price, picUrl, type) => {
+	fetch(`https://testapi.io/api/lukasnvc/resource/NewEshop/${id}`,
+	{
+		method: 'PUT',
+		headers: {
+			'Content-Type':
+			'application/json'
+		},
+		body: JSON.stringify({
+			color: `${color}`,
+			name: `${name}`,
+			size: JSON.stringify(sizes),
+			reserve: JSON.stringify(reserve),
+			description: `${description}`,
+			price: `${price}`,
+			picUrl: `${picUrl}`,
+			type:  `${type}`
+		}) 
+	})
+	.then((response) => {
+		if (response.ok) {
+			return response.json()
+		}
+	})
+	.then((result) => {
+		console.log('Fetching data : ', result);
+		
+		getData()
+	})
+}

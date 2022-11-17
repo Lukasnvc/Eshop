@@ -15,7 +15,7 @@ const cart = document.querySelector('#cart');
 
 
 const getData = () => {
-  fetch('https://testapi.io/api/lukasnvc/resource/Eshop',
+  fetch('https://testapi.io/api/lukasnvc/resource/NewEshop',
 {
   method: 'GET',
   headers: {

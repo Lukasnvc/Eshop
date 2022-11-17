@@ -70,7 +70,7 @@ closeAdd.addEventListener('click', () => {
 
 const addProduct = (color, name, sizes, description, price, picUrl, type) => {
 	console.log(color, name, sizes, description, price, picUrl, type)
-	fetch(`https://testapi.io/api/lukasnvc/resource/Eshop`,
+	fetch(`https://testapi.io/api/lukasnvc/resource/NewEshop`,
 	{
 		method: 'POST',
 		headers: {
@@ -81,6 +81,7 @@ const addProduct = (color, name, sizes, description, price, picUrl, type) => {
 			color: `${color}`,
 			name: `${name}`,
 			size: `${sizes}`,
+			reserve:  JSON.stringify([0,0,0,0]),
 			description: `${description}`,
 			price: `${price}`,
 			picUrl: `${picUrl}`,
@@ -100,7 +101,7 @@ const addProduct = (color, name, sizes, description, price, picUrl, type) => {
 }
 
 const editProduct = (id, color, name, sizes, description, price, picUrl, type) => {
-	fetch(`https://testapi.io/api/lukasnvc/resource/Eshop/${id}`,
+	fetch(`https://testapi.io/api/lukasnvc/resource/NewEshop/${id}`,
 	{
 		method: 'PUT',
 		headers: {
@@ -111,6 +112,7 @@ const editProduct = (id, color, name, sizes, description, price, picUrl, type) =
 			color: `${color}`,
 			name: `${name}`,
 			size: `${sizes}`,
+			reserve: JSON.stringify([0,0,0,0]),
 			description: `${description}`,
 			price: `${price}`,
 			picUrl: `${picUrl}`,
@@ -166,7 +168,7 @@ pics.innerHTML='';
 })
 
 const getData = () => {
-  fetch('https://testapi.io/api/lukasnvc/resource/Eshop',
+  fetch('https://testapi.io/api/lukasnvc/resource/NewEshop',
 {
   method: 'GET',
   headers: {
@@ -194,7 +196,7 @@ const getData = () => {
 getData()
 
 const deletItem = (id) => {
-  fetch(`https://testapi.io/api/lukasnvc/resource/Eshop/${id}`,
+  fetch(`https://testapi.io/api/lukasnvc/resource/NewEshop/${id}`,
 {
   method: 'DELETE',
   headers: {

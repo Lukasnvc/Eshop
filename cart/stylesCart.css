@@ -51,6 +51,81 @@ body nav .cart .forCart:hover {
   cursor: pointer;
   color: #F76C5E;
 }
+body main h1 {
+  margin-top: 120px;
+  text-align: center;
+}
+body main .container #cartInfo .productCard {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid red;
+  margin: 20px 20px;
+}
+body main .container #cartInfo .productCard img {
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid blue;
+}
+body main .container #cartInfo .productCard .productDetails {
+  margin: 50px;
+  border: 1px solid yellow;
+}
+body main .container #cartInfo .productCard .productDetails h3 {
+  text-align: center;
+}
+body main .container #cartInfo .productCard .productDetails span {
+  display: block;
+  margin: 10px 10px;
+}
+body main .container #cartInfo .productCard .productDetails .buttons button {
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+body main .container #cartInfo .productCard .productDetails .buttons .addBtn {
+  background-color: #324376;
+  color: whitesmoke;
+}
+body main .container #cartInfo .productCard .productDetails .buttons .addBtn:hover {
+  border: 1px solid #324376;
+  background-color: #586BA4;
+  color: #F5DD90;
+  cursor: pointer;
+}
+body main .container #cartInfo .productCard .productDetails .buttons .deleteBtn {
+  background-color: #F76C5E;
+  color: whitesmoke;
+}
+body main .container #cartInfo .productCard .productDetails .buttons .deleteBtn:hover {
+  border: 1px solid #F76C5E;
+  background-color: #F76C5E;
+  color: #F5DD90;
+  cursor: pointer;
+}
+body main .container .buy {
+  position: fixed;
+  top: 50%;
+  right: 20%;
+}
+body main .container .buy h2 {
+  text-align: center;
+}
+body main .container .buy button {
+  padding: 10px 30px;
+  font-size: 2rem;
+  background-color: #324376;
+  color: whitesmoke;
+  border-radius: 10px;
+}
+body main .container .buy button:hover {
+  border: 1px solid #324376;
+  background-color: #586BA4;
+  color: #F5DD90;
+  cursor: pointer;
+}
 body footer {
   position: fixed;
   bottom: 0;

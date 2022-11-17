@@ -60,7 +60,110 @@ body {
     }
   }
 
- 
+  main {
+
+    h1 {
+      margin-top: 120px;
+      text-align: center;
+    }
+  
+    .container {
+     
+
+      #cartInfo {
+      
+        .productCard {
+          width: 50%;
+          display: flex;
+          justify-content: space-evenly;
+          border: 1px solid red;
+          margin: 20px 20px;
+
+          img {
+           width: 200px;
+           object-fit: cover;
+           border: 1px solid blue;
+          }
+
+          .productDetails {
+            margin: 50px;
+            border: 1px solid yellow;
+
+            h3 {
+              text-align: center;
+            }
+
+            span {
+              display: block;
+              margin: 10px 10px;
+            }
+
+            .buttons {
+
+              button {
+              margin: 10px;
+
+              padding: 5px 10px;
+              border-radius: 10px;
+              border: 1px solid white;
+
+              }
+              .addBtn {
+                background-color: #324376;
+                color: whitesmoke;
+
+                &:hover {
+                  border: 1px solid #324376;
+                  background-color: #586BA4;
+                  color: #F5DD90;
+                  cursor: pointer;
+                }
+
+              }
+
+              .deleteBtn {
+                background-color: #F76C5E;
+                color: whitesmoke;
+
+                &:hover {
+                border: 1px solid #F76C5E;
+                  background-color: #F76C5E;
+                  color: #F5DD90;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .buy {
+        position: fixed;
+        top: 50%;
+        right: 20%;
+
+        h2 {
+          text-align: center;
+        }
+
+        button {
+          padding: 10px 30px;
+          font-size: 2rem;
+          background-color: #324376;
+          color: whitesmoke;
+          border-radius: 10px;
+
+          &:hover {
+            border: 1px solid #324376;
+            background-color: #586BA4;
+            color: #F5DD90;
+            cursor: pointer;
+          }
+          
+        }
+      }
+    }
+  } 
 
   footer{
     position: fixed;
