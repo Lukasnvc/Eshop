@@ -7,7 +7,8 @@ const hoodies = document.querySelector('#hoodies');
 const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
 const title = document.querySelector('title');
-const liked =document.querySelector('#liked');
+const liked = document.querySelector('#liked');
+const cart = document.querySelector('#cart');
 
 
 const getData = () => {
@@ -72,6 +73,10 @@ const filteredCategorie = (data) => {
 
 
 const draw = (data) => {
+  const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
+  if (itemSizeArr.length>0){
+  cart.style.color= '#F68E5F';
+  } 
   data.forEach(element => {
     const div = document.createElement('div');
     div.setAttribute('class', 'product');
@@ -211,4 +216,9 @@ liked.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'like');
   window.location.href = '/categories/categories.html';
+})
+
+cart.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.location.href = '/cart/cart.html';
 })

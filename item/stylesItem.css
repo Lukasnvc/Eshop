@@ -84,7 +84,9 @@ body #item .itemInfo #itemPrice {
   color: #F68E5F;
 }
 body #item .itemInfo .sizes {
+  display: flex;
   margin: 20px;
+  justify-content: space-evenly;
 }
 body #item .itemInfo .sizes .empty {
   background-color: red;
@@ -93,6 +95,9 @@ body #item .itemInfo .sizes span {
   border: 1px solid #324376;
   padding: 8px 10px;
   margin-left: 10px;
+}
+body #item .itemInfo .sizes .empty {
+  background-color: red;
 }
 body #item .itemInfo #OutOfStock {
   color: red;

@@ -25,7 +25,7 @@
       </ul>
       <div class="cart">
         <a href="#" id="liked"><i class="fa-solid fa-heart forCart"></i></a>
-        <a href="#"><i class="fa-solid fa-cart-shopping forCart"></i></a>
+        <a href="#" id="cart"><i class="fa-solid fa-cart-shopping forCart"></i></a>
       </div>
     </nav>
   </header>
@@ -36,6 +36,7 @@
       <h3 id="itemName"></h3>
       <p class="itemSpecs">Categorie : <span id="itemCategorie"></span></p>
       <p class="itemSpecs">Color : <span id="itemColor"></span></p>
+
       <div class="sizes">
         <span id="s">S</span>
         <span id="m">M</span>
@@ -44,7 +45,18 @@
       </div>
       <p id="OutOfStock"></p>
       <p id="itemDescription"></p>
+      <form id="sizeForm">
+        <label for="sizes">Pick size :</label>
+        <select name="sizes" id="sizeDropDown">
+          <option value="undefined">-</option>
+          <option id="option1" value="0">S</option>
+          <option id="option2" value="1">M</option>
+          <option id="option3" value="2">L</option>
+          <option id="option4" value="3">XL</option>
+        </select>
+       </form>
       <p class="itemSpecs">Price : <span id="itemPrice"></span></p>
+      
       <div class="buttons">
        <i id="like" class="fa-regular fa-heart"></i>
        <button id="toCart"><i class="fa-solid fa-cart-plus"></i> <br> Add to cart</button>

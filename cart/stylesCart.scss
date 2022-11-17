@@ -1,0 +1,90 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0;
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: #324376;
+    z-index: 99;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .logo {
+      padding: 20px;
+      font-size: 1.6rem;
+
+      span{
+        font-size: 0.7rem;
+      }
+    }
+
+    .navbar {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+
+      .place {
+        margin-right: 10px;
+        padding: 35px 20px;
+
+        &:hover {
+          background-color: #586BA4;
+          cursor: pointer;
+          color: #F5DD90;
+        }
+      }
+    }
+    .cart {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 10px;
+
+      .forCart{
+        padding: 30px 20px;
+        font-size: 1.7rem;
+
+        &:hover {
+          background-color: #586BA4;
+          cursor: pointer;
+          color: #F76C5E;
+        }
+      }
+    }
+  }
+
+ 
+
+  footer{
+    position: fixed;
+    bottom: 0;
+    background-color: #324376;  
+    width: 100%;
+
+    p {
+      font-size: 0.7rem;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: rgb(29, 29, 29);
+
+        &:hover {
+          color: rgb(166, 166, 166);
+        }
+
+        i {
+          font-size: 1.5rem;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

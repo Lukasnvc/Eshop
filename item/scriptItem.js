@@ -17,7 +17,15 @@ const itemPrice = document.querySelector('#itemPrice');
 const outOfStock = document.querySelector('#OutOfStock');
 const title = document.querySelector('title');
 const likeBtn = document.querySelector('#like');
-const liked =document.querySelector('#liked');
+const liked = document.querySelector('#liked');
+const toCart = document.querySelector('#toCart');
+const sizeDropDown = document.querySelector('#sizeDropDown');
+const option1 = document.querySelector('#option1');
+const option2 = document.querySelector('#option2');
+const option3 = document.querySelector('#option3');
+const option4 = document.querySelector('#option4');
+const sizeForm = document.querySelector('#sizeForm');
+const cart = document.querySelector('#cart');
 
 const id=localStorage.getItem('item_id');
 
@@ -51,6 +59,17 @@ hats.addEventListener('click', (e) => {
   window.location.href = '/categories/categories.html';
 })
 
+liked.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'like');
+  window.location.href = '/categories/categories.html';
+})
+
+cart.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.location.href = '/cart/cart.html';
+})
+
 const getData = () => {
   fetch('https://testapi.io/api/lukasnvc/resource/Eshop',
 {
@@ -69,24 +88,27 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
-  let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
 	itemPicker(data);
 })
 }
+
 getData()
-
-
 
 const itemPicker = (data) => {
   console.log(id)
   data.forEach(element => {
-    if (element.id == id){
-      let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+    if (element.id === +id){
+      console.log(element.id, id)
+      const likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+      const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
+      if (itemSizeArr.length>0){
+        cart.style.color= '#F68E5F';
+      } 
       draw(element, likedArr)
+      sizeSelect(element)
     }
   });
 }
-
 
 const draw = (data, likedArr) => {
   const pics = JSON.parse(data.picUrl);
@@ -116,28 +138,29 @@ const draw = (data, likedArr) => {
   const sizes = JSON.parse(data.size);
   if (sizes[0]== 0) {
     sizeS.setAttribute('class', 'empty');
-    outOfStock.textContent = 'Red sizes out of stock'
+    outOfStock.textContent = 'Red sizes out of stock';
+    option1.setAttribute('disabled', '')
+
   }
   if (sizes[1]== 0) {
     sizeM.setAttribute('class', 'empty');
     outOfStock.textContent = 'Red sizes out of stock'
+    option2.setAttribute('disabled', '')
   }
   if (sizes[2]== 0) {
     sizeL.setAttribute('class', 'empty');
-    outOfStock.textContent = 'Red sizes out of stock'
+    outOfStock.textContent = 'Red sizes out of stock';
+    option3.setAttribute('disabled', '')
   }
   if (sizes[3]== 0) {
     sizeXl.setAttribute('class', 'empty');
-    outOfStock.textContent = 'Red sizes out of stock'
+    outOfStock.textContent = 'Red sizes out of stock';
+    option4.setAttribute('disabled', '')
   }
 
   itemDescription.textContent = data.description;
   itemPrice.textContent = `${data.price}$`;
 }
-
-
-
-
 
 likeBtn.addEventListener('click', (e) =>{
   e.preventDefault()
@@ -156,4 +179,44 @@ likeBtn.addEventListener('click', (e) =>{
   }
   getData()
 })
+
+let pickedSize
+
+const sizeSelect = (data) => {
+  sizeDropDown.addEventListener('change', (e) => {
+    e.preventDefault();
+    sizeDropDown.style.backgroundColor= 'white';
+    sizeForm.style.color= 'black';
+   pickedSize = +sizeDropDown.value;
+    })
+   
+  
+}
+
+toCart.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log(pickedSize)
+
+  if (pickedSize === 0 || pickedSize > 0) {
+    sizeDropDown.value= "undefined";
+    const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
+    let item = [];
+    item.push(id);
+    item.push(pickedSize);
+    itemSizeArr.push(item);
+    localStorage.setItem('itemId&size', JSON.stringify(itemSizeArr));
+
+    getData()
+    
+  } else {
+    sizeDropDown.style.backgroundColor= 'red';
+    sizeForm.style.color= 'red';
+  }
+})
+
+// const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
+
+// if (itemSizeArr.length>0){
+//   cart.style.color= '#F68E5F';
+// } 
 

@@ -8,6 +8,8 @@ const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
 const admin = document.querySelector('#admin');
 const liked =document.querySelector('#liked');
+const cart = document.querySelector('#cart');
+
 
 
 
@@ -43,6 +45,10 @@ getData()
 let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
 
 const draw = (data) => {
+  const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
+  if (itemSizeArr.length>0){
+  cart.style.color= '#F68E5F';
+  } 
   data.forEach(element => {
     const div = document.createElement('div');
     div.setAttribute('class', 'product');
@@ -187,5 +193,10 @@ admin.addEventListener('click', () => {
   localStorage.clear();
   localStorage.setItem('categorie', 'like');
   window.location.href = '/admin/admin.html';
+})
+
+cart.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.location.href = '/cart/cart.html';
 })
 

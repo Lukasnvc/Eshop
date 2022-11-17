@@ -1,0 +1,74 @@
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 0;
+}
+body nav {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: #324376;
+  z-index: 99;
+}
+body nav a {
+  text-decoration: none;
+  color: black;
+}
+body nav .logo {
+  padding: 20px;
+  font-size: 1.6rem;
+}
+body nav .logo span {
+  font-size: 0.7rem;
+}
+body nav .navbar {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+body nav .navbar .place {
+  margin-right: 10px;
+  padding: 35px 20px;
+}
+body nav .navbar .place:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F5DD90;
+}
+body nav .cart {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+body nav .cart .forCart {
+  padding: 30px 20px;
+  font-size: 1.7rem;
+}
+body nav .cart .forCart:hover {
+  background-color: #586BA4;
+  cursor: pointer;
+  color: #F76C5E;
+}
+body footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #324376;
+  width: 100%;
+}
+body footer p {
+  font-size: 0.7rem;
+  text-align: center;
+}
+body footer p a {
+  text-decoration: none;
+  color: rgb(29, 29, 29);
+}
+body footer p a:hover {
+  color: rgb(166, 166, 166);
+}
+body footer p a i {
+  font-size: 1.5rem;
+  margin-left: 5px;
+}/*# sourceMappingURL=stylesCart.css.map */

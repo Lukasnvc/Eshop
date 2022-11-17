@@ -96,16 +96,28 @@ body {
         font-size: 1.8rem;
         color: #F68E5F;
       }
+
       .sizes {
+        display: flex;
         margin: 20px;
+        justify-content: space-evenly;
+
+        
+          .empty {
+            background-color: red;
+          }
+          span{
+            border: 1px solid #324376;
+            padding: 8px 10px;
+            margin-left: 10px;
+          }
+          
+        
         .empty {
           background-color: red;
         }
-        span{
-          border: 1px solid #324376;
-          padding: 8px 10px;
-          margin-left: 10px;
-        }
+
+        
       }
 
       #OutOfStock {
