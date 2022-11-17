@@ -9,6 +9,7 @@ body {
     display: flex;
     justify-content: space-between;
     background-color: #324376;
+    z-index: 99;
 
     a {
       text-decoration: none;
@@ -64,6 +65,7 @@ body {
     form {
       display: flex;
       position: fixed;
+      z-index: 99;
       top: 100px;
       .filterItem {
         margin: 10px 30px;
@@ -92,13 +94,15 @@ body {
       }
     }
     #products {
-      margin: 100px;
+      margin: 100px 100px;
       display: grid;
       width: 100%;
       grid-template-columns: 20% 20% 20% 20%;
       gap: 20px;
 
       .product {
+        z-index: 0;
+        position: relative;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -110,6 +114,22 @@ body {
           border-bottom: 2px solid #F68E5F;
           color: #F68E5F;
           border-radius: 100px;
+        }
+
+        .fa-heart {
+          position: absolute;
+          top: 50px;
+          right: 50px;
+          font-size: 2rem;
+
+          &:hover {
+            cursor: pointer;
+            color: #F5DD90;
+          }
+        }
+
+        .liked {
+          color: red;
         }
 
         .productImg {
@@ -147,6 +167,29 @@ body {
         i {
           font-size: 1.5rem;
           margin-left: 5px;
+        }
+      }
+    }
+
+    #admin {
+      position: absolute;
+      bottom: 5px;
+      right: 30px;
+      color: rgb(29, 29, 29);
+      padding: 5px;
+      border: 2px solid rgb(29, 29, 29);
+      border-radius: 5px;
+
+      i {
+        color: black;
+      }
+
+      &:hover {
+        border: 2px solid whitesmoke;
+        color: white;
+        cursor: pointer;
+        i{
+          color: #F68E5F;
         }
       }
     }

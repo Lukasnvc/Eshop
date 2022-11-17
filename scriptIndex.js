@@ -7,6 +7,7 @@ const hoodies = document.querySelector('#hoodies');
 const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
 const admin = document.querySelector('#admin');
+const liked =document.querySelector('#liked');
 
 
 
@@ -51,6 +52,12 @@ const draw = (data) => {
     if (likedArr.includes(element.id)) {
       console.log('liked', element)
       likedBtn.setAttribute('class', 'liked fa-solid fa-heart')
+    }
+
+    if (likedArr.length>0) {
+      liked.style.color= 'red'
+    } else {
+      liked.style.color= 'black'
     }
 
     const pic = JSON.parse(element.picUrl);
@@ -170,8 +177,15 @@ hats.addEventListener('click', (e) => {
   window.location.href = '/categories/categories.html';
 })
 
+liked.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'like');
+  window.location.href = '/categories/categories.html';
+})
+
 admin.addEventListener('click', () => {
   localStorage.clear();
+  localStorage.setItem('categorie', 'like');
   window.location.href = '/admin/admin.html';
 })
 

@@ -7,6 +7,7 @@ const hoodies = document.querySelector('#hoodies');
 const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
 const title = document.querySelector('title');
+const liked =document.querySelector('#liked');
 
 
 const getData = () => {
@@ -27,15 +28,31 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
+  products.innerHTML='';
 	filteredCategorie(data);
 	console.log('GOT this data to draw :', data)
 })
 }
 
+let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+
 getData()
 
 const filteredCategorie = (data) => {
   let value=localStorage.getItem('categorie');
+  if(value=== 'like'){
+    let likeArr=[];
+    data.forEach(element => {
+      likedArr.forEach(like => {
+        if(like===element.id) {
+          likeArr.push(element);
+        }
+      })
+    })
+    draw(likeArr);
+    search(likeArr);
+    colorSearch(likeArr);
+  } else {
   title.textContent = `Eshop ${value}s`;
   const fCategorie = data.filter((element) => {
     return (
@@ -47,6 +64,7 @@ const filteredCategorie = (data) => {
     draw(fCategorie);
     search(fCategorie);
     colorSearch(fCategorie);
+  } 
   }
 }
 
@@ -57,6 +75,19 @@ const draw = (data) => {
   data.forEach(element => {
     const div = document.createElement('div');
     div.setAttribute('class', 'product');
+
+    const likedBtn = document.createElement('i');
+    likedBtn.setAttribute('class', 'fa-regular fa-heart');
+    if (likedArr.includes(element.id)) {
+      console.log('liked', element)
+      likedBtn.setAttribute('class', 'liked fa-solid fa-heart')
+    }
+
+    if (likedArr.length>0) {
+      liked.style.color= 'red'
+    } else {
+      liked.style.color= 'black'
+    }
 
     const pic = JSON.parse(element.picUrl);
     const img = document.createElement('img');
@@ -71,16 +102,33 @@ const draw = (data) => {
     price.setAttribute('class', 'productPrice');
     price.textContent= `${element.price}$`
 
+    div.appendChild(likedBtn)
     div.appendChild(img);
     div.appendChild(name);
     div.appendChild(price);
    
     products.appendChild(div);
 
-    div.addEventListener('click', (e) => {
+    img.addEventListener('click', (e) => {
       e.preventDefault();
       pushUser(element);
       window.location.href = '/item/item.html';
+    })
+
+    likedBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      
+      if (likedArr.includes(element.id)) {
+        let i = likedArr.indexOf(element.id);
+        likedArr.splice(i,1);
+        let jsonLiked = JSON.stringify(likedArr);
+        localStorage.setItem('liked', jsonLiked);
+      } else {
+        likedArr.push(element.id);
+        let jsonLiked = JSON.stringify(likedArr);
+        localStorage.setItem('liked', jsonLiked);
+      }
+      getData()
     })
   });
 }
@@ -156,5 +204,11 @@ sweatshirts.addEventListener('click', (e) => {
 hats.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hat');
+  window.location.href = '/categories/categories.html';
+})
+
+liked.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'like');
   window.location.href = '/categories/categories.html';
 })

@@ -17,6 +17,7 @@ const itemPrice = document.querySelector('#itemPrice');
 const outOfStock = document.querySelector('#OutOfStock');
 const title = document.querySelector('title');
 const likeBtn = document.querySelector('#like');
+const liked =document.querySelector('#liked');
 
 const id=localStorage.getItem('item_id');
 
@@ -68,24 +69,26 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
+  let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
 	itemPicker(data);
 })
 }
 getData()
 
-let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+
 
 const itemPicker = (data) => {
   console.log(id)
   data.forEach(element => {
     if (element.id == id){
-      draw(element)
+      let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
+      draw(element, likedArr)
     }
   });
 }
 
 
-const draw = (data) => {
+const draw = (data, likedArr) => {
   const pics = JSON.parse(data.picUrl);
   pics.forEach(element => {
     title.textContent = data.name;
@@ -93,6 +96,12 @@ const draw = (data) => {
     itemPic.setAttribute('class', 'ItemImg')
     itemPic.src=element;
     itemImg.appendChild(itemPic)
+
+    if (likedArr.length>0) {
+      liked.style.color= 'red'
+    } else {
+      liked.style.color= 'black'
+    }
 
   })
   let itemId = data.id;
@@ -145,5 +154,6 @@ likeBtn.addEventListener('click', (e) =>{
     let jsonLiked = JSON.stringify(likedArr);
     localStorage.setItem('liked', jsonLiked);
   }
+  getData()
 })
 

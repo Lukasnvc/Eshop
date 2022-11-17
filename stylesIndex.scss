@@ -121,6 +121,11 @@ body {
           top: 50px;
           right: 50px;
           font-size: 2rem;
+
+          &:hover {
+            cursor: pointer;
+            color: #F5DD90;
+          }
         }
 
         .liked {
