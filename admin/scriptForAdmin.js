@@ -135,6 +135,7 @@ let pictures = [];
 	
 addPic.addEventListener('click', (e) => {
 	e.preventDefault();
+	if (!picUrl.value=='') {
 	pictures.push(picUrl.value);
 	const img = document.createElement('img');
 	img.setAttribute('class', 'prw');
@@ -142,6 +143,7 @@ addPic.addEventListener('click', (e) => {
 	picUrl.value= '';
 	pics.appendChild(img);
 	console.log(pictures)
+}
 })
 
 addproductBtn.addEventListener('click', (e) => {

@@ -33,22 +33,31 @@ const getData = () => {
 })
 .then((data) => {
   products.innerHTML='';
-	draw(data)
-  search(data)
-  colorSearch(data)
-	console.log('GOT this data to draw :', data)
+  cartCheck(data);
+	draw(data);
+  search(data);
+  colorSearch(data);
+	console.log('GOT this data to draw :', data);
 })
 }
 
 getData()
 
+const cartCheck = (data) => {
+  data.forEach(element => {
+    let b = JSON.parse(element.reserve)
+    console.log(b)
+    b.forEach((x) => {
+      if (x>0){
+        cart.style.color= '#F68E5F';
+      } 
+    })
+  })
+}
+
 let likedArr = JSON.parse(localStorage.getItem('liked')) || [];
 
 const draw = (data) => {
-  const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
-  if (itemSizeArr.length>0){
-  cart.style.color= '#F68E5F';
-  } 
   data.forEach(element => {
     const div = document.createElement('div');
     div.setAttribute('class', 'product');

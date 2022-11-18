@@ -31,6 +31,7 @@ const getData = () => {
 .then((data) => {
   products.innerHTML='';
 	filteredCategorie(data);
+  cartCheck(data);
 	console.log('GOT this data to draw :', data)
 })
 }
@@ -70,6 +71,17 @@ const filteredCategorie = (data) => {
 }
 
 
+const cartCheck = (data) => {
+  data.forEach(element => {
+    let b = JSON.parse(element.reserve)
+    console.log(b)
+    b.forEach((x) => {
+      if (x>0){
+        cart.style.color= '#F68E5F';
+      } 
+    })
+  })
+}
 
 
 const draw = (data) => {

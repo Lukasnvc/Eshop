@@ -88,22 +88,30 @@ const getData = () => {
 	return result.data
 })
 .then((data) => {
+  cartCheck(data);
 	itemPicker(data);
 })
 }
 
 getData()
 
+const cartCheck = (data) => {
+  data.forEach(element => {
+    let b = JSON.parse(element.reserve)
+    console.log(b)
+    b.forEach((x) => {
+      if (x>0){
+        cart.style.color= '#F68E5F';
+      } 
+    })
+  })
+}
+
 const itemPicker = (data) => {
   console.log(id)
   data.forEach(element => {
     if (element.id === +id){
-      console.log(element.id, id)
       const likedArr = JSON.parse(localStorage.getItem('liked')) || [];
-      const itemSizeArr = JSON.parse(localStorage.getItem('itemId&size')) || [];
-      if (itemSizeArr.length>0){
-        cart.style.color= '#F68E5F';
-      } 
       draw(element, likedArr);
       toReserve(element);
     }
@@ -111,6 +119,7 @@ const itemPicker = (data) => {
 }
 
 const draw = (data, likedArr) => {
+  
   const pics = JSON.parse(data.picUrl);
   pics.forEach(element => {
     title.textContent = data.name;
