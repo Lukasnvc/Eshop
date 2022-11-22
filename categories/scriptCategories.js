@@ -16,6 +16,55 @@ const mobileNav = document.querySelector('#mobileNav');
 const mobileList = document.querySelector('#mobileList');
 const closeBtn = document.querySelector('#closeBtn');
 
+const mainIndex1 = document.querySelector('#mainIndex1');
+const tshirts1 = document.querySelector('#tshirts1');
+const hoodies1 = document.querySelector('#hoodies1');
+const sweatshirts1 = document.querySelector('#sweatshirts1');
+const hats1 = document.querySelector('#hats1');
+const liked1 = document.querySelector('#liked1');
+const cart1 = document.querySelector('#cart1');
+
+mainIndex1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'all');
+  window.location.href = '../index.html';
+})
+
+tshirts1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'tshirt');
+  window.location.href = '/categories/categories.html';
+})
+
+hoodies1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'hoodie');
+  window.location.href = '/categories/categories.html';
+})
+
+sweatshirts1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'sweatshirt');
+  window.location.href = '/categories/categories.html';
+})
+
+hats1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'hat');
+  window.location.href = '/categories/categories.html';
+})
+
+liked1.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStorage.setItem('categorie', 'like');
+  window.location.href = '/categories/categories.html';
+})
+
+cart1.addEventListener('click', (e) => {
+  e.preventDefault()
+  window.location.href = '/cart/cart.html';
+})
+
 mobileNav.addEventListener('click', () => {  
     mobileList.style.right= '0px';
     mobileList.style.top= '-20px';

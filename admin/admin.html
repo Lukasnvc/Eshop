@@ -14,7 +14,9 @@
     <h1><i class="fa-solid fa-pen-clip"></i></i>Admin panel</h1>
     <button id="mainIndex">To Main</button>
     <div id="mainBtns">
-      <button id="showAddBtn">Add product</button>
+      <button id="showAddBtn">Add Product</button>
+      <button id="showAddSlideBtn">Add Slide Pics</button>
+      <button id="showAddPromoBtn">Add Promo Text</button>
       <button id="logout">Logout</button>
     </div>
   </header>
@@ -74,6 +76,23 @@
           </div>
           <div id="pics"></div>
           <button id="addProductBtn">Add product</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="addSlidePics">
+      <div class="topAdd">
+        <h3>Add slider pics</h3>
+        <button class="close" id="closeAddSlide">x</button>
+      </div>
+      <div class="bottomAdd">
+        <form id="slideForm">
+          <div class="item">
+            <label for="slidePic">Picture Url :</label>
+            <input type="text" name="slidePic" id="sliderPic" required>
+          </div>
+          <div id="allSliderPics"></div>
+          <button id="addToSliderBtn">Add to slider</button>
         </form>
       </div>
     </div>

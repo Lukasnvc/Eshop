@@ -28,24 +28,121 @@ const filterColor = document.querySelector('#filterColor');
 const filterSearch = document.querySelector('#filterSearch');
 const searchesFields = document.querySelector('#searchesFields');
 const filterCategorie = document.querySelector('#filterCategorie');
+const closeAddSlide = document.querySelector('#closeAddSlide');
+const addSlidePics = document.querySelector('#addSlidePics');
+const sliderPic = document.querySelector('#sliderPic');
+const addSliderPicBtn = document.querySelector('#addSliderPic');
+const allSliderPics = document.querySelector('#allSliderPics');
+const addToSliderBtn = document.querySelector('#addToSliderBtn');
+const showAddSlideBtn = document.querySelector('#showAddSlideBtn');
 
-
-
-	 
-//loging to admin panel
-login.addEventListener('click', (e) => {
-	e.preventDefault();
-	if (adminName.value==='Lukas' && password.value==='123'){
-		loginDiv.style.display= 'none';
-		mainBtns.style.display= 'block';
-		forAdmin.style.display= "block";
-		searchesFields.style.display= 'flex';
-	} else {
-		console.log('not found')
-		error.style.display= 'block';
-		password.value='';
-	}
+showAddSlideBtn.addEventListener('click', () => {
+	addSlidePics.style.display= 'block';
+	SliderData()
 })
+
+closeAddSlide.addEventListener('click', () => {
+	addSlidePics.style.display= 'none';
+})
+
+addToSliderBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	addSlide(sliderPic.value)
+})
+
+
+const getSliderData = () => {
+  fetch('	https://testapi.io/api/lukasnvc/resource/sliderPics',
+{
+  method: 'GET',
+  headers: {
+    'Content-Type':
+    'application/json'
+  }
+})
+.then((response) => {
+  if (response.ok) {
+    return response.json()
+  }
+})
+.then((result) => {
+	return result.data
+})
+.then((data) => {
+	console.log(data)
+	drawSlider(data)
+})
+}
+
+const addSlide = (item) => {
+	fetch(`https://testapi.io/api/lukasnvc/resource/sliderPics`,
+	{
+		method: 'POST',
+		headers: {
+			'Content-Type':
+			'application/json'
+		},
+		body: JSON.stringify({
+			pics: `${item}`
+			
+		}) 
+	})
+	.then((response) => {
+		if (response.ok) {
+		return response.json()
+		}
+	})
+}
+
+
+const drawSlider = (data) => {
+	data.forEach(element => {
+		console.log(element.pics)
+		const sliderPic = document.createElement('img');
+		sliderPic.src=element.pics
+		sliderPic.setAttribute('class', 'prw')
+		allSliderPics.appendChild(sliderPic)
+	})
+}
+
+getSliderData()
+
+fetch('	https://testapi.io/api/lukasnvc/resource/adminLogin',
+	{
+		method: 'GET',
+		headers: {
+			'Content-Type':
+			'application/json'
+		}
+	})
+	.then((response) => {
+		if (response.ok) {
+			return response.json()
+		}
+	})
+	.then((result) => {
+		return result.data
+	})
+	.then((data) => {
+		loginCheck(data)
+})
+
+const loginCheck = (data) => {
+	login.addEventListener('click', (e) => {
+		e.preventDefault();
+		data.forEach(element => {
+			if (element.username===adminName.value && element.password===password.value) {
+				loginDiv.style.display= 'none';
+				mainBtns.style.display= 'block';
+				forAdmin.style.display= "block";
+				searchesFields.style.display= 'flex';
+			} else {
+				error.style.display= 'block';
+			}
+		})
+		password.value='';
+	})
+}
 
 logout.addEventListener('click', () => {
 	loginDiv.style.display= 'block';
@@ -65,7 +162,6 @@ closeAdd.addEventListener('click', () => {
 	addProducts.style.display= 'none';
 	showAddBtn.style.display= 'inline-block';
 })
-//loging to admin panel
 
 
 const addProduct = (color, name, sizes, description, price, picUrl, type) => {
@@ -94,7 +190,6 @@ const addProduct = (color, name, sizes, description, price, picUrl, type) => {
 		}
 	})
 	.then((result) => {
-		console.log('Fetching data : ', result);
 		getData()
 		products.innerHTML=''
 	})
@@ -150,7 +245,6 @@ e.preventDefault()
 const picsJson = JSON.stringify(pictures);
 const size = [sizeS.value, sizeM.value, sizeL.value, sizeXL.value]
 const sizes = JSON.stringify(size);
-console.log(sizes)
 addProduct(color.value, productName.value, sizes, description.value, price.value, picsJson, type.value)
 
 color.value= '';
@@ -187,7 +281,6 @@ const getData = () => {
 })
 .then((data) => {
 	draw(data);
-	console.log('GOT this data to draw :', data);
 	categorieSearch(data);
 	colorSearch(data);
 	search(data);
@@ -292,7 +385,6 @@ const draw = (data) => {
 			forPic.appendChild(delPic);
 			forPic.appendChild(drawnpic);
 			div.appendChild(forPic);
-			console.log(parsedPics, picIndex);
 			delPic.addEventListener('click', () => {
 				parsedPics.splice(picIndex,1);
 				editItem(element.id, parsedPics, inputColor.value, inputName.value, inputDescription.value, inputPrice.value, inputType.value)
@@ -308,7 +400,6 @@ const draw = (data) => {
 
 		edit.addEventListener('click', (e)=> {
 			e.preventDefault();
-			console.log()
 			editItem(element.id, parsedPics, inputColor.value, inputName.value, inputDescription.value, inputPrice.value, inputType.value)
 		})
 
@@ -330,7 +421,6 @@ const editItem = (id, pics, color, name, description, price, type) => {
 	const jsonNewSizes = JSON.stringify(newSizes);
 
 	const jsonNewPics = JSON.stringify(pics);
-	console.log(newSizes)
 	editProduct(id, color, name, jsonNewSizes, description, price, jsonNewPics, type);
 } 
 
@@ -350,51 +440,51 @@ const search = (data) => {
 		getData()
 		}
 	})
-	}
+}
 	
-	const colorSearch = (data) => {
-		filterColor.addEventListener('change', (e) => {
-			e.preventDefault();
-			const value = filterColor.value;
-			const filteredColor = data.filter((products) => {
-				return (
-					products.color.includes(value)
-				);
-			})
-			if (value) {
-				products.innerHTML=null;
-				draw(filteredColor);
-			} else {
-				products.innerHTML=null;
-				getData()
-			}
+const colorSearch = (data) => {
+	filterColor.addEventListener('change', (e) => {
+		e.preventDefault();
+		const value = filterColor.value;
+		const filteredColor = data.filter((products) => {
+			return (
+				products.color.includes(value)
+			);
 		})
-	}
-
-	const categorieSearch = (data) => {
-		filterCategorie.addEventListener('change', (e) => {
-			e.preventDefault();
-			const value = filterCategorie.value;
-			const filteredCategories = data.filter((product) => {
-				return (
-					product.type === value
-				);
-			})
-			if (value) {
-				products.innerHTML=null;
-				draw(filteredCategories);
-			} else {
-				products.innerHTML=null;
-				getData();
-			}
-		})
-	}
-
-	mainIndex.addEventListener('click', (e) => {
-		e.preventDefault()
-		localStorage.setItem('categorie', 'all');
-		window.location.href = '../index.html';
+		if (value) {
+			products.innerHTML=null;
+			draw(filteredColor);
+		} else {
+			products.innerHTML=null;
+			getData()
+		}
 	})
+}
+
+const categorieSearch = (data) => {
+	filterCategorie.addEventListener('change', (e) => {
+		e.preventDefault();
+		const value = filterCategorie.value;
+		const filteredCategories = data.filter((product) => {
+			return (
+				product.type === value
+			);
+		})
+		if (value) {
+			products.innerHTML=null;
+			draw(filteredCategories);
+		} else {
+			products.innerHTML=null;
+			getData();
+		}
+	})
+}
+
+mainIndex.addEventListener('click', (e) => {
+	e.preventDefault()
+	localStorage.setItem('categorie', 'all');
+	window.location.href = '../index.html';
+})
 
 
 
