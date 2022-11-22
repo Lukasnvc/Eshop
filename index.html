@@ -14,6 +14,19 @@
 </head>
 <body>
   <header>
+    <div id="mobileNav"><i class="fa-solid fa-bars"></i></div>
+    <ul id="mobileList">
+      <li id="closeBtn"><i class="fa-regular fa-circle-xmark"></i></li>
+      <li id="mainIndex" class="place">Main</li>
+      <li id="tshirts" class="place">T-shirts</li>
+      <li id="hoodies" class="place">Hoodies</li>
+      <li id="sweatshirts" class="place">Sweatshirts</li>
+      <li id="hats" class="place">Hats</li>
+      <li id="liked" class="place"><i class="fa-solid fa-heart forCart"></i></li>
+      <li id="cart" class="place">
+      <i class="fa-solid fa-cart-shopping forCart"></i></li>
+    </ul>
+
     <nav>
       <div class="logo">Eshop<span> by Lukas</span></div>
       <ul class="navbar">
@@ -26,6 +39,10 @@
       <div class="cart">
         <a href="#" id="liked"><i class="fa-solid fa-heart forCart"></i></a>
         <a href="#" id="cart"><i class="fa-solid fa-cart-shopping forCart"></i></a>
+        <div id="cartsDp">
+          <ol id="cartDropdownItem"></ol>
+          <span id="cartTotal"></span>
+        </div>
       </div>
     </nav>
   </header>
@@ -51,7 +68,6 @@
         <input type="text" name="search" id="filterSearch">
       </div>
     </form>
-
     <div id="products">
     </div>
   </main>

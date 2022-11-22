@@ -7,9 +7,26 @@ const hoodies = document.querySelector('#hoodies');
 const sweatshirts = document.querySelector('#sweatshirts');
 const hats = document.querySelector('#hats');
 const admin = document.querySelector('#admin');
-const liked =document.querySelector('#liked');
+const liked = document.querySelector('#liked');
 const cart = document.querySelector('#cart');
+const mobileNav = document.querySelector('#mobileNav');
+const mobileList = document.querySelector('#mobileList');
+const closeBtn = document.querySelector('#closeBtn');
 
+
+
+mobileNav.addEventListener('click', () => {  
+    mobileList.style.right= '0px';
+    mobileList.style.top= '-20px';
+    // mobileList.style.right='-160px';
+  
+  
+})
+
+closeBtn.addEventListener('click', () => {
+  mobileList.style.right='-180px';
+  mobileList.style.top='-500px'
+})
 
 
 
@@ -37,6 +54,7 @@ const getData = () => {
 	draw(data);
   search(data);
   colorSearch(data);
+  filtring(data);
 	console.log('GOT this data to draw :', data);
 })
 }
@@ -46,7 +64,6 @@ getData()
 const cartCheck = (data) => {
   data.forEach(element => {
     let b = JSON.parse(element.reserve)
-    console.log(b)
     b.forEach((x) => {
       if (x>0){
         cart.style.color= '#F68E5F';
@@ -208,4 +225,79 @@ cart.addEventListener('click', (e) => {
   e.preventDefault()
   window.location.href = '/cart/cart.html';
 })
+
+
+
+
+const dropdownCart = document.querySelector('#cartsDp');
+const cartDropdownItem = document.querySelector('#cartDropdownItem');
+const cartTotal = document.querySelector('#cartTotal');
+
+const filtring = (data) => {
+  let totalPrice = [];
+  data.forEach(element => {
+    let b = JSON.parse(element.reserve)
+    b.forEach((x, index) => {
+      
+      if (x>0){
+        cartDraw(element, index, x ,totalPrice);
+        cartPeaklook()
+      } else {
+      }
+    })
+  })
+}
+
+const cartDraw = (product, index, x, totalPrice) => {
+  console.log('dropdown', product, index, x, totalPrice)
+  const pic = JSON.parse(product.picUrl);
+  
+  const img = document.createElement('img');
+  img.src=pic[0];
+
+  const name = document.createElement('h3');
+  name.textContent=product.name;
+
+  const numberOfItems = document.createElement('span');
+
+  const productSize = document.createElement('span');
+  numberOfItems.textContent= ` pcs. ${x}`;
+  if (index == 0){
+    productSize.textContent= 'Size : S'
+  } else if (index == 1) {
+    productSize.textContent= 'Size : M';
+  } else if (index == 2) {
+    productSize.textContent= 'Size : L';
+  } else if (index == 3) {
+    productSize.textContent= 'Size : XL';
+  }
+ 
+  const price = document.createElement('span');
+  price.textContent= `${x*product.price}$`;
+
+  let multipPrice = x*product.price;
+  totalPrice.push(multipPrice);
+
+  const li = document.createElement('li')
+  li.appendChild(img);
+  li.appendChild(name);
+  li.appendChild(productSize);
+  li.appendChild(numberOfItems);
+  li.appendChild(price);
+
+  cartDropdownItem.appendChild(li);
+
+  sum = totalPrice.reduce((a, b) => a + b, 0);
+  cartTotal.textContent= `Total ${sum}$`;
+}
+
+const cartPeaklook = () => {
+    cart.addEventListener('mouseover', () => {
+      dropdownCart.style.display = 'block';
+    })
+    
+    cart.addEventListener('mouseout', () => {
+        dropdownCart.style.display = 'none';
+    })
+}
 

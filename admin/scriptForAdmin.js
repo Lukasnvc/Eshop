@@ -142,7 +142,6 @@ addPic.addEventListener('click', (e) => {
 	img.src= picUrl.value;
 	picUrl.value= '';
 	pics.appendChild(img);
-	console.log(pictures)
 }
 })
 
@@ -221,6 +220,10 @@ const draw = (data) => {
 		const div = document.createElement('div');
 		div.setAttribute('class', 'drawnProduct');
 
+		const inputPic = document.createElement('input');
+		inputPic.setAttribute('placeholder', 'enter Url');
+
+
 		const inputType = document.createElement('input');
 		inputType.setAttribute('class', 'drawType')
 		inputType.value= element.type;
@@ -243,14 +246,20 @@ const draw = (data) => {
 
 		const edit = document.createElement('button');
 		edit.setAttribute('class', 'editBtn');
-		edit.textContent= 'Update item';
+		edit.textContent= 'Update info';
+
+		const addPic = document.createElement('button');
+		addPic.setAttribute('class', 'addPic');
+		addPic.textContent= 'Add pic'
 
 		const deleteBtn = document.createElement('button');
 		deleteBtn.setAttribute('class', 'deleteBtn');
 		deleteBtn.textContent= 'Delete item';
 
 		div.appendChild(edit);
+		div.appendChild(addPic);
 		div.appendChild(deleteBtn);
+		div.appendChild(inputPic);
 		div.appendChild(inputType);
 		div.appendChild(inputColor);
 		div.appendChild(inputName);
@@ -268,13 +277,34 @@ const draw = (data) => {
 			div.appendChild(inputSize)
 		})
 
+
 		const pics = element.picUrl;
+		
 		const parsedPics = JSON.parse(pics)
-		parsedPics.forEach(element => {
+		parsedPics.forEach((pic, picIndex) => {
 			const drawnpic = document.createElement('img');
-			drawnpic.src= element;
-			div.appendChild(drawnpic)
+			const delPic = document.createElement('button');
+			delPic.setAttribute('class', 'picDelete');
+			delPic.textContent= 'delete';
+			drawnpic.src= pic;
+			const forPic = document.createElement('div');
+
+			forPic.appendChild(delPic);
+			forPic.appendChild(drawnpic);
+			div.appendChild(forPic);
+			console.log(parsedPics, picIndex);
+			delPic.addEventListener('click', () => {
+				parsedPics.splice(picIndex,1);
+				editItem(element.id, parsedPics, inputColor.value, inputName.value, inputDescription.value, inputPrice.value, inputType.value)
+			})
 		})
+
+
+		addPic.addEventListener('click', () => {
+			parsedPics.push(inputPic.value);
+			inputPic.innerHTML='';
+			editItem(element.id, parsedPics, inputColor.value, inputName.value, inputDescription.value, inputPrice.value, inputType.value)
+		}) 
 
 		edit.addEventListener('click', (e)=> {
 			e.preventDefault();
@@ -359,3 +389,12 @@ const search = (data) => {
 			}
 		})
 	}
+
+	mainIndex.addEventListener('click', (e) => {
+		e.preventDefault()
+		localStorage.setItem('categorie', 'all');
+		window.location.href = '../index.html';
+	})
+
+
+

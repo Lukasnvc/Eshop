@@ -10,6 +10,21 @@ const cart = document.querySelector('#cart');
 const cartTotal = document.querySelector('#cartTotal');
 const buy = document.querySelector('#buy');
 const deleteAll = document.querySelector('#deleteAll');
+const totalPcsH2 = document.querySelector('#totalPcs');
+const mobileNav = document.querySelector('#mobileNav');
+const mobileList = document.querySelector('#mobileList');
+const closeBtn = document.querySelector('#closeBtn');
+
+mobileNav.addEventListener('click', () => {  
+    mobileList.style.right= '0px';
+    mobileList.style.top= '-20px';
+})
+
+closeBtn.addEventListener('click', () => {
+  mobileList.style.right='-180px';
+  mobileList.style.top='-500px'
+})
+
 
 mainIndex.addEventListener('click', (e) => {
   e.preventDefault()
@@ -80,6 +95,7 @@ const id=localStorage.getItem('item_id');
 const filtring = (data) => {
   const likedArr = JSON.parse(localStorage.getItem('liked')) || [];
   let totalPrice = [];
+  let totalPcs = [];
   if (totalPrice.length<1) {
     cartTotal.innerHTML = 'No items in cart';
     buy.style.display= 'none';
@@ -90,7 +106,8 @@ const filtring = (data) => {
     b.forEach((x, index) => {
       
       if (x>0){
-        draw(element, index, x ,totalPrice);
+        
+        draw(element, index, x ,totalPrice, totalPcs);
       } else {
       }
     })
@@ -116,7 +133,7 @@ const cartCheck = (data) => {
 
 
 
-const draw = (product, index, x, totalPrice) => {
+const draw = (product, index, x, totalPrice, totalPcs) => {
 
   const pic = JSON.parse(product.picUrl);
   
@@ -140,16 +157,14 @@ const draw = (product, index, x, totalPrice) => {
   } else if (index == 3) {
     productSize.textContent= 'Size : XL';
   }
- 
+
+  totalPcs.push(x)
   const price = document.createElement('span');
   price.textContent= `Price total : ${x*product.price}$`;
 
   let multipPrice = x*product.price;
   totalPrice.push(multipPrice);
-  totalPrice.forEach((item,y) => {
-    let priceIndex = totalPrice.indexOf(item,y);
-    
-  })
+
 
   const addBtn = document.createElement('button');
   addBtn.setAttribute('class', 'addBtn');
@@ -190,35 +205,35 @@ const draw = (product, index, x, totalPrice) => {
   })
   sum = totalPrice.reduce((a, b) => a + b, 0);
   cartTotal.textContent= `Total ${sum}$`;
+  sumPcs= totalPcs.reduce((a,b) => a + b, 0);
+  totalPcsH2.textContent= `${sumPcs} pcs.`
   buy.style.display = 'block';
   deleteAll.style.display = 'block';
   buyDeleteReserve(product, index);
   deleteAllItems(product, index , x);
 }
 
-
-const priceTotalF = (priceIndex, multipPrice) => {
-  totalPrice[priceIndex]=multipPrice;
-}
-
-
 const addToCart = (data, index) => {
   
   let parsedReserve = JSON.parse(data.reserve);
   let parsedSize = JSON.parse(data.size);
-  parsedSize[index]-=1;
+  if (parsedSize[index]>0){
+    parsedSize[index]-=1;
   parsedReserve[index]+=1;
 
   editProduct(data.id, data.color, data.name, parsedSize, parsedReserve, data.description, data.price, data.picUrl, data.type);
+  }
 }
 
 const removeFromCart = (data, index) => {
   let parsedReserve = JSON.parse(data.reserve);
   let parsedSize = JSON.parse(data.size);
-  parsedSize[index]+=1;
-  parsedReserve[index]-=1;
-
-  editProduct(data.id, data.color, data.name, parsedSize, parsedReserve, data.description, data.price, data.picUrl, data.type);
+  if (parsedReserve[index]>0) {
+    parsedSize[index]+=1;
+    parsedReserve[index]-=1;
+  
+    editProduct(data.id, data.color, data.name, parsedSize, parsedReserve, data.description, data.price, data.picUrl, data.type);
+  }
 }
 
 const buyDeleteReserve = (data, index) => {
@@ -276,6 +291,17 @@ const editProduct = (id, color, name, sizes, reserve, description, price, picUrl
     getData()
   })
 }
+
+
+let index = 0;
+setInterval (function(){
+  const imageSources = ['https://scontent.fkun1-1.fna.fbcdn.net/v/t39.30808-6/296855164_7724467134290675_2296242593078657806_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=wNItxyCbS-kAX-BgkTO&_nc_ht=scontent.fkun1-1.fna&oh=00_AfDZuvbL6d_JLoAvrOKML96CbPPfq-39dQ71QKpIyHWtHA&oe=637EDB71', 'https://scontent.fkun1-1.fna.fbcdn.net/v/t39.30808-6/296166411_7708941002509955_747590807790550950_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Rpar9oUtmJEAX8wUA8g&_nc_ht=scontent.fkun1-1.fna&oh=00_AfDmtPMHXrdzGOalfS9mSBZ9FmBDeML86vE7uxc3d78NyQ&oe=637F6D17', 'https://scontent.fkun1-1.fna.fbcdn.net/v/t39.30808-6/294758048_7673400079397381_400374745871900328_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=r6HOYhu7eJ8AX-Xnhts&_nc_ht=scontent.fkun1-1.fna&oh=00_AfBSDgSzAeiB1Sr5mVvYNTJ8aRRUUyd07yzGpx1d3nXnVw&oe=637F2A95', 'https://scontent.fkun1-1.fna.fbcdn.net/v/t39.30808-6/297077252_7767089143361807_1013267406943045715_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=y7XJ8VJAwbgAX8JIqL4&_nc_ht=scontent.fkun1-1.fna&oh=00_AfAtyeSdYPdwhzi2XSnz2-lATXyb3taCwI4aNAgpgmY93w&oe=637E5AD1','https://scontent.fkun1-1.fna.fbcdn.net/v/t39.30808-6/281628033_7414052225332169_2452725281815647411_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=ZZFTGk8xUBIAX9-0C7i&_nc_ht=scontent.fkun1-1.fna&oh=00_AfAmv85TjEvZH0_JfHbuH4zKjX618wazBW1hd9o5wJddIw&oe=637F4BBE'];
+  if (index === imageSources.length) {
+    index = 0;
+  }
+  document.getElementById('slide').src = imageSources[index];
+  index++;
+} , 2500);
 
 
 // if (!window.location.href = '../index.html'){
