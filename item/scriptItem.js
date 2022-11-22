@@ -44,42 +44,42 @@ const cart1 = document.querySelector('#cart1');
 mainIndex1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'all');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 })
 
 tshirts1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'tshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hoodies1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hoodie');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 sweatshirts1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'sweatshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hats1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hat');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 liked1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'like');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 cart1.addEventListener('click', (e) => {
   e.preventDefault()
-  window.location.href = '/cart/cart.html';
+  window.location.href = 'cart.html';
 })
 
 mobileNav.addEventListener('click', () => {  
@@ -98,42 +98,42 @@ const id=localStorage.getItem('item_id');
 mainIndex.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'all');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 })
 
 tshirts.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'tshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hoodies.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hoodie');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 sweatshirts.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'sweatshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hats.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hat');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 liked.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'like');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 cart.addEventListener('click', (e) => {
   e.preventDefault()
-  window.location.href = '/cart/cart.html';
+  window.location.href = 'cart.html';
 })
 
 const getData = () => {
@@ -165,8 +165,7 @@ getData()
 
 const cartCheck = (data) => {
   data.forEach(element => {
-    let b = JSON.parse(element.reserve)
-    console.log(b)
+    let b = JSON.parse(element.reserve);
     b.forEach((x) => {
       if (x>0){
         cart.style.color= '#F68E5F';
@@ -176,7 +175,6 @@ const cartCheck = (data) => {
 }
 
 const itemPicker = (data) => {
-  console.log(id)
   data.forEach(element => {
     if (element.id === +id){
       const likedArr = JSON.parse(localStorage.getItem('liked')) || [];
@@ -269,8 +267,6 @@ sizeDropDown.addEventListener('change', (e) => {
 const toReserve = (data) => {
 toCart.addEventListener('click', (e) => {
   e.preventDefault();
-  
-  console.log(data.size, data.reserve);
 
   if (pickedSize === 0 || pickedSize > 0) {
     sizeDropDown.value= "undefined";
@@ -279,7 +275,6 @@ toCart.addEventListener('click', (e) => {
     let parsedSize = JSON.parse(data.size);
     parsedSize[pickedSize]-=1;
     parsedReserve[pickedSize]+=1;
-    console.log(parsedReserve, parsedSize)
 
     editProduct(data.id, data.color, data.name, parsedSize, parsedReserve, data.description, data.price, data.picUrl, data.type);
     
@@ -315,7 +310,6 @@ const editProduct = (id, color, name, sizes, reserve, description, price, picUrl
 		}
 	})
 	.then((result) => {
-		console.log('Fetching data : ', result);
 		itemImg.innerHTML='';
 		getData()
 	})
@@ -338,7 +332,6 @@ const filtring = (data) => {
 }
 
 const cartDraw = (product, index, x, totalPrice) => {
-  console.log('dropdown', product, index, x, totalPrice)
   const pic = JSON.parse(product.picUrl);
   
   const img = document.createElement('img');

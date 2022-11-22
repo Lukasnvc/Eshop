@@ -31,14 +31,12 @@ const filterCategorie = document.querySelector('#filterCategorie');
 const closeAddSlide = document.querySelector('#closeAddSlide');
 const addSlidePics = document.querySelector('#addSlidePics');
 const sliderPic = document.querySelector('#sliderPic');
-const addSliderPicBtn = document.querySelector('#addSliderPic');
 const allSliderPics = document.querySelector('#allSliderPics');
 const addToSliderBtn = document.querySelector('#addToSliderBtn');
 const showAddSlideBtn = document.querySelector('#showAddSlideBtn');
 
 showAddSlideBtn.addEventListener('click', () => {
 	addSlidePics.style.display= 'block';
-	SliderData()
 })
 
 closeAddSlide.addEventListener('click', () => {
@@ -69,10 +67,28 @@ const getSliderData = () => {
 	return result.data
 })
 .then((data) => {
-	console.log(data)
+	allSliderPics.innerHTML='';
+	sliderPic.value='';
 	drawSlider(data)
 })
 }
+
+const deleteSliderData = (id) => {
+  fetch(`https://testapi.io/api/lukasnvc/resource/sliderPics/${id}`,
+	{
+		method: 'DELETE',
+		headers: {
+			'Content-Type':
+			'application/json'
+		}
+	})
+	.then((response) => {
+		if (response.ok) {
+			getSliderData();
+		}
+	})
+}
+
 
 const addSlide = (item) => {
 	fetch(`https://testapi.io/api/lukasnvc/resource/sliderPics`,
@@ -84,12 +100,14 @@ const addSlide = (item) => {
 		},
 		body: JSON.stringify({
 			pics: `${item}`
-			
 		}) 
 	})
 	.then((response) => {
 		if (response.ok) {
-		return response.json()
+			sliderPic.textContent='';
+			allSliderPics.innerHTML='';
+			getSliderData();
+		return response.json();
 		}
 	})
 }
@@ -97,11 +115,23 @@ const addSlide = (item) => {
 
 const drawSlider = (data) => {
 	data.forEach(element => {
-		console.log(element.pics)
 		const sliderPic = document.createElement('img');
-		sliderPic.src=element.pics
-		sliderPic.setAttribute('class', 'prw')
-		allSliderPics.appendChild(sliderPic)
+		const deleteSlidePic = document.createElement('div');
+		deleteSlidePic.setAttribute('class', 'deleteSlide');
+		deleteSlidePic.textContent = 'Delete';
+
+		sliderPic.src=element.pics;
+		sliderPic.setAttribute('class', 'prw');
+
+		const divSlide = document.createElement('div');
+		divSlide.setAttribute('class', 'divSlide');
+		divSlide.appendChild(sliderPic);
+		divSlide.appendChild(deleteSlidePic);
+		allSliderPics.appendChild(divSlide);
+
+		deleteSlidePic.addEventListener('click', () => {
+			deleteSliderData(element.id);
+		})
 	})
 }
 
@@ -165,7 +195,7 @@ closeAdd.addEventListener('click', () => {
 
 
 const addProduct = (color, name, sizes, description, price, picUrl, type) => {
-	console.log(color, name, sizes, description, price, picUrl, type)
+
 	fetch(`https://testapi.io/api/lukasnvc/resource/NewEshop`,
 	{
 		method: 'POST',
@@ -315,7 +345,6 @@ const draw = (data) => {
 
 		const inputPic = document.createElement('input');
 		inputPic.setAttribute('placeholder', 'enter Url');
-
 
 		const inputType = document.createElement('input');
 		inputType.setAttribute('class', 'drawType')

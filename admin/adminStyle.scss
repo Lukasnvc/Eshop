@@ -94,7 +94,7 @@
     }
   
     #forAdmin {
-      // display: none;
+      display: none;
       
       #addProducts {
         display: none;
@@ -188,7 +188,7 @@
       }
 
       #addSlidePics {
-        // display: none;
+        display: none;
         width: 500px;
         background-color: #ffce78;
         margin: 50px auto;
@@ -237,20 +237,37 @@
               label {
                 margin: 10px 0;
               }
-
-              #addSliderPic {
-                background-color: #fe7f2d;
-                padding: 5px 10px;
-                border-radius: 5px;
-                margin-bottom: 10px;
-              }
             }
             
-            .prw {
-              object-fit: cover;
-              width: 100px;
-              height: 100px;
-              margin: 10px auto;
+            #allSliderPics {
+              display: grid;
+              grid-template-columns: 1fr 1fr 1fr;
+              .divSlide {
+                width: fit-content;
+                position: relative;
+
+                .prw {
+                  object-fit: cover;
+                  width: 150px;
+                  height: 150px;
+                }
+    
+                .deleteSlide {
+                  position: absolute;
+                 background-color: #F76C5E;
+                 border-radius: 10px;
+                 font-size: 0.8rem;
+                 padding: 2px 5px;
+                 top: 5px;
+                 right: 5px;
+
+                 &:hover{
+                  cursor: pointer;
+                  color: rgb(53, 51, 51);
+                  border: 1px solid whitesmoke;
+                }
+                }
+              }
             }
 
             #addToSliderBtn {
@@ -304,10 +321,7 @@
               border-radius: 10px;
             }
           }
-          
-
-         
-
+        
           .drawnSize {
             display: inline-block;
             width: 30px;

@@ -27,42 +27,42 @@ const cart1 = document.querySelector('#cart1');
 mainIndex1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'all');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 })
 
 tshirts1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'tshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hoodies1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hoodie');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 sweatshirts1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'sweatshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hats1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hat');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 liked1.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'like');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 cart1.addEventListener('click', (e) => {
   e.preventDefault()
-  window.location.href = '/cart/cart.html';
+  window.location.href = 'cart.html';
 })
 
 mobileNav.addEventListener('click', () => {  
@@ -99,7 +99,6 @@ const getData = () => {
 	filteredCategorie(data);
   cartCheck(data);
   filtring(data);
-	console.log('GOT this data to draw :', data)
 })
 }
 
@@ -129,7 +128,6 @@ const filteredCategorie = (data) => {
     );
   })
   if (value) {
-    console.log(fCategorie);
     draw(fCategorie);
     search(fCategorie);
     colorSearch(fCategorie);
@@ -140,8 +138,7 @@ const filteredCategorie = (data) => {
 
 const cartCheck = (data) => {
   data.forEach(element => {
-    let b = JSON.parse(element.reserve)
-    console.log(b)
+    let b = JSON.parse(element.reserve);
     b.forEach((x) => {
       if (x>0){
         cart.style.color= '#F68E5F';
@@ -163,8 +160,7 @@ const draw = (data) => {
     const likedBtn = document.createElement('i');
     likedBtn.setAttribute('class', 'fa-regular fa-heart');
     if (likedArr.includes(element.id)) {
-      console.log('liked', element)
-      likedBtn.setAttribute('class', 'liked fa-solid fa-heart')
+      likedBtn.setAttribute('class', 'liked fa-solid fa-heart');
     }
 
     if (likedArr.length>0) {
@@ -264,42 +260,42 @@ const pushUser = (item) => {
 mainIndex.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'all');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 })
 
 tshirts.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'tshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hoodies.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hoodie');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 sweatshirts.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'sweatshirt');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 hats.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'hat');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 liked.addEventListener('click', (e) => {
   e.preventDefault()
   localStorage.setItem('categorie', 'like');
-  window.location.href = '/categories/categories.html';
+  window.location.href = 'categories.html';
 })
 
 cart.addEventListener('click', (e) => {
   e.preventDefault()
-  window.location.href = '/cart/cart.html';
+  window.location.href = 'cart.html';
 })
 
 
@@ -319,7 +315,6 @@ const filtring = (data) => {
 }
 
 const cartDraw = (product, index, x, totalPrice) => {
-  console.log('dropdown', product, index, x, totalPrice)
   const pic = JSON.parse(product.picUrl);
   
   const img = document.createElement('img');
