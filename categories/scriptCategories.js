@@ -298,7 +298,6 @@ cart.addEventListener('click', (e) => {
   window.location.href = 'cart.html';
 })
 
-
 const filtring = (data) => {
   let totalPrice = [];
   data.forEach(element => {
